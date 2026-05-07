@@ -1,0 +1,13 @@
+node_modules
+.next
+.env
+.env.local
+data/app.db*
+data/uploads/*
+!data/uploads/.gitkeep
+.DS_Store
+*.log
+out
+build
+dist
+.vercel

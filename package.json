@@ -1,0 +1,43 @@
+{
+  "name": "songpeng-520",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:gen": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "better-sqlite3": "11.7.2",
+    "clsx": "2.1.1",
+    "drizzle-orm": "0.38.4",
+    "framer-motion": "11.16.6",
+    "jose": "5.9.6",
+    "lucide-react": "0.469.0",
+    "lunar-javascript": "1.6.13",
+    "next": "^15.5.16",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "sharp": "0.33.5",
+    "tailwind-merge": "2.6.0",
+    "typescript": "5.7.3",
+    "uuid": "11.0.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/better-sqlite3": "7.6.12",
+    "@types/node": "22.10.7",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "@types/uuid": "10.0.0",
+    "autoprefixer": "10.4.20",
+    "drizzle-kit": "0.30.2",
+    "eslint": "9.18.0",
+    "eslint-config-next": "15.1.6",
+    "postcss": "8.5.1",
+    "tailwindcss": "3.4.17"
+  }
+}

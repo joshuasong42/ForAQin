@@ -1,0 +1,42 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: songpeng-520:latest
+    container_name: songpeng-520-app
+    restart: always
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: file:/data/app.db
+      UPLOAD_DIR: /data/uploads
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET 必须设置}
+      USER_A_NAME: ${USER_A_NAME:-宋金钊}
+      USER_A_USERNAME: ${USER_A_USERNAME:-jinzhao}
+      USER_A_PASSWORD: ${USER_A_PASSWORD:?USER_A_PASSWORD 必须设置}
+      USER_B_NAME: ${USER_B_NAME:-彭沁园}
+      USER_B_USERNAME: ${USER_B_USERNAME:-qinyuan}
+      USER_B_PASSWORD: ${USER_B_PASSWORD:?USER_B_PASSWORD 必须设置}
+    volumes:
+      - ./data:/data
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "--tries=1", "http://localhost:3000/login"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:alpine
+    container_name: songpeng-520-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./data/uploads:/var/www/uploads:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - app
