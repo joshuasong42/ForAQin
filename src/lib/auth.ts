@@ -34,7 +34,10 @@ export async function setSessionCookie(token: string) {
     name: SESSION_COOKIE_NAME,
     value: token,
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    // 默认仅在生产环境启用 Secure；裸 HTTP 部署可设 COOKIE_SECURE=false 临时关闭
+    secure: process.env.COOKIE_SECURE === 'false'
+      ? false
+      : process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
     maxAge: SEVEN_DAYS,
